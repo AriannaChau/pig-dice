@@ -3,6 +3,7 @@
 function Player (name, playerScore) {
   this.playerName = name;
   this.turnScore = 0;
+  this.playerScore = 0;
 }
 
 function Die() {
@@ -14,14 +15,14 @@ Player.prototype.hold = function(turnScore, playerScore, turnCount) {
   turnCount++;
 }
 
-Die.prototype.roll = function(turnCount, turnScore) {
+Die.prototype.roll = function(turnCount, player) {
   var rolledSide = this.sides[Math.floor(Math.random() * this.sides.length)];
   console.log(rolledSide)
   if (rolledSide === 1) {
-    turnScore = 0
+    player.turnScore = 0
     turnCount++;
   } else {
-    turnScore += rolledSide;
+    player.turnScore += rolledSide;
   }
 }
 
@@ -39,13 +40,12 @@ var whichTurn = function(player1, player2, turnCount) {
 $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
-    var die = new Die();
-    console.log(die.roll());
     var player1 = $("input#player1").val();
     var player2 = $("input#player2").val();
-
+    die = new Die();
     newPlayer1 = new Player(player1)
     newPlayer2 = new Player(player2)
+    turnCount = 1
 
 
     $("button#submit").hide();
@@ -58,9 +58,9 @@ $(document).ready(function() {
   });
 
   $("#rollBtn").click(function() {
-    var turnPlayer = whichTurn(player1, player2, turnCount);
-    die.roll(turnCount, turnPlayer.turnScore);
-    console.log(turnPlayer)
+    var turnPlayer = whichTurn(newPlayer1, newPlayer2, turnCount);
+    die.roll(turnCount, turnPlayer);
+    console.log(turnPlayer);
   });
 
 });
