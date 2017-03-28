@@ -1,6 +1,6 @@
 // back end logic
 
-function Player (name, playerScore) {
+function Player (name) {
   this.playerName = name;
   this.turnScore = 0;
   this.playerScore = 0;
@@ -19,7 +19,7 @@ Die.prototype.roll = function(turnCount, player) {
   var rolledSide = this.sides[Math.floor(Math.random() * this.sides.length)];
   console.log(rolledSide)
   if (rolledSide === 1) {
-    player.turnScore = 0
+    player.turnScore = 0;
     turnCount++;
   } else {
     player.turnScore += rolledSide;
@@ -42,10 +42,10 @@ $(document).ready(function() {
     event.preventDefault();
     var player1 = $("input#player1").val();
     var player2 = $("input#player2").val();
-    die = new Die();
-    newPlayer1 = new Player(player1)
-    newPlayer2 = new Player(player2)
-    turnCount = 1
+    var die = new Die();
+    var newPlayer1 = new Player(player1);
+    var newPlayer2 = new Player(player2);
+    var turnCount = 1;
 
 
     $("button#submit").hide();
@@ -53,14 +53,16 @@ $(document).ready(function() {
     $("#show-players").show();
     $("#playerName1").text(newPlayer1.playerName);
     $("#playerName2").text(newPlayer2.playerName);
-    $("#turnScore1").text(newPlayer1.turnScore)
-    $("#turnScore2").text(newPlayer2.turnScore)
+    $("#turnScore1").text(newPlayer1.turnScore);
+    $("#turnScore2").text(newPlayer2.turnScore);
+
+
+    $("#rollBtn").click(function() {
+      var turnPlayer = whichTurn(newPlayer1, newPlayer2, turnCount);
+      die.roll(turnCount, turnPlayer);
+      console.log(turnPlayer);
+    });
   });
 
-  $("#rollBtn").click(function() {
-    var turnPlayer = whichTurn(newPlayer1, newPlayer2, turnCount);
-    die.roll(turnCount, turnPlayer);
-    console.log(turnPlayer);
-  });
 
 });
