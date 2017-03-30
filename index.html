@@ -21,17 +21,25 @@
         </div>
         <button type="submit" class="btn" id="submit">Submit</button>
       </form>
-      <button id="rollBtn" class="btn btn-primary">Roll!</button>
+
       <div id="show-players">
-        <h2>Player 1:</h2>
-        <p>Name: <span id="playerName1"></span></p>
-        <p>Turn Score: <span id="turnScore1"></span></p>
-        <p>Player Score: </p>
-        <br>
-        <h2>Player 2</h2>
-        <p>Name: <span id="playerName2"></span></p>
-        <p>Turn Score: <span id="turnScore2"></span></p>
-        <p>Player Score: </p>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Player 1</h2>
+            <p>Name: <span id="playerName1"></span></p>
+            <p>Turn Score: <span id="turnScore1"></span></p>
+            <p>Player Score: <span id="totalScore1"></span></p>
+          </div>
+          <div class="col-md-6">
+            <h2>Player 2</h2>
+            <p>Name: <span id="playerName2"></span></p>
+            <p>Turn Score: <span id="turnScore2"></span></p>
+            <p>Player Score: <span id="totalScore2"></span></p>
+          </div>
+        </div>
+        <button id="rollBtn" class="btn btn-primary">Roll!</button>
+        <button id="holdBtn" class="btn btn-warning">Hold!</button>
+        <button id="newGameBtn" class="btn btn-info">New Game!</button>
       </div>
     </div>
   </body>
